@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6fpo41f6cojw"]
+
+[ext_resource type="PackedScene" uid="uid://bb0y6fy0ka4ux" path="res://Testing/debug_npc.tscn" id="1_qi3nv"]
+
+[node name="DebugFollowNPC" type="PathFollow3D"]
+
+[node name="DebugNPC" parent="." instance=ExtResource("1_qi3nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

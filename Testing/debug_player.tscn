@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnthkm4hpk7bo"]
+
+[ext_resource type="PackedScene" uid="uid://cksw6568ebypb" path="res://Testing/debug_chara_mesh.tscn" id="1_u1u0j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_arwhc"]
+
+[node name="DebugPlayer" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CapsuleShape3D_arwhc")
+
+[node name="DebugCharaMesh" parent="RigidBody3D" instance=ExtResource("1_u1u0j")]

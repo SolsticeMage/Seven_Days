@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cksw6568ebypb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_srwer"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_882v7"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="DebugCharaMesh" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_srwer")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+mesh = SubResource("BoxMesh_882v7")
+skeleton = NodePath("")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5m7g5kjvjyoh"]
+
+[ext_resource type="PackedScene" uid="uid://canfbvvwyq88h" path="res://Testing/debug_path.tscn" id="1_8fgca"]
+[ext_resource type="PackedScene" uid="uid://b6fpo41f6cojw" path="res://Testing/debug_follow_npc.tscn" id="1_62nsr"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x4npb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_62nsr"]
+
+[node name="NPCPathing" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_x4npb")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_62nsr")
+skeleton = NodePath("../..")
+
+[node name="DebugPath" parent="." instance=ExtResource("1_8fgca")]
+
+[node name="DebugFollowNPC" parent="DebugPath" instance=ExtResource("1_62nsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
