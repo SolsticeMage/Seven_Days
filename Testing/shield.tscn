@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=4 uid="uid://br4uhany7xusp"]
+
+[ext_resource type="Script" uid="uid://vaxri6qb1y3h" path="res://Testing/shield_mesh.gd" id="1_5d8vs"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5d8vs"]
+_surfaces = [{
+"aabb": AABB(-0.6, -0.9, 0, 1.2, 1.5, 0.3),
+"format": 34359742465,
+"index_count": 39,
+"index_data": PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAYABAAFAAYAAAAGAAEAAQAGAAcABQAHAAYABQAIAAcABAAIAAUABAAJAAgAAgAJAAMAAwAJAAQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("mpkZP5qZGT8AAAAAmpkZP5qZGT+amZk+mpkZv5qZGT+amZk+mpkZv5qZGT8AAAAAmpmZvpqZGb8AAAAAAAAAAGZmZr8AAAAAmpmZPpqZGb8AAAAAmpmZPpqZGb+amZk+AAAAAGZmZr+amZk+mpmZvpqZGb+amZk+")
+}]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="ShieldMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_5d8vs")
+script = ExtResource("1_5d8vs")
