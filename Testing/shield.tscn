@@ -5,13 +5,13 @@
 [sub_resource type="ArrayMesh" id="ArrayMesh_5d8vs"]
 _surfaces = [{
 "aabb": AABB(-0.6, -0.9, 0, 1.2, 1.5, 0.3),
-"format": 34359742465,
-"index_count": 39,
-"index_data": PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAYABAAFAAYAAAAGAAEAAQAGAAcABQAHAAYABQAIAAcABAAIAAUABAAJAAgAAgAJAAMAAwAJAAQA"),
+"format": 34359742471,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAYABAAFAAYAAAAGAAEAAQAGAAcABQAHAAYABQAIAAcABAAIAAUABAAJAAgAAgAJAAMAAwAJAAQAAQAHAAkAAQAJAAIACQAHAAgA"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 10,
-"vertex_data": PackedByteArray("mpkZP5qZGT8AAAAAmpkZP5qZGT+amZk+mpkZv5qZGT+amZk+mpkZv5qZGT8AAAAAmpmZvpqZGb8AAAAAAAAAAGZmZr8AAAAAmpmZPpqZGb8AAAAAmpmZPpqZGb+amZk+AAAAAGZmZr+amZk+mpmZvpqZGb+amZk+")
+"vertex_data": PackedByteArray("mpkZP5qZGT8AAAAAmpkZP5qZGT+amZk+mpkZv5qZGT+amZk+mpkZv5qZGT8AAAAAmpmZvpqZGb8AAAAAAAAAAGZmZr8AAAAAmpmZPpqZGb8AAAAAmpmZPpqZGb+amZk+AAAAAGZmZr+amZk+mpmZvpqZGb+amZk+ZeZe8RiiBoQAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIA=")
 }]
 
 [node name="Node3D" type="Node3D"]
@@ -19,3 +19,12 @@ _surfaces = [{
 [node name="ShieldMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_5d8vs")
 script = ExtResource("1_5d8vs")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.6, 0)
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.072, -0.126, 0.432)
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.072, 0.126, -0.432)
