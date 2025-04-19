@@ -37,21 +37,27 @@ func _ready():
 	)
 	# If the vertex is part of multiple faces then its normal should be the average of the faces
 	#	note: THERE MUST BE A NORMAL FOR EVERY VERTEX otherwise 'add_surface_from_arrays()' breaks.
-	#TODO: Fix the test_normal for the love of god
-	var test_normal = get_vector3_average(PackedVector3Array(
-		[
-			get_triangle_normal(0,1,2),
-			get_triangle_normal(0,2,3),
-			get_triangle_normal(0,3,4),
-			get_triangle_normal(0,4,6),
-			get_triangle_normal(0,6,1)
-		]
-	))
-	print(test_normal)
+	#TODO: These two vectors should be symmetrical and aren't. Determine where the issue arises.
 	mesh_data[ArrayMesh.ARRAY_NORMAL] = PackedVector3Array(
 		[
-			test_normal,
-			Vector3.ZERO,
+			get_vector3_average(PackedVector3Array(
+				[	#Vertex 0 and all shared faces
+					get_triangle_normal(0,1,2),
+					get_triangle_normal(0,2,3),
+					get_triangle_normal(0,3,4),
+					get_triangle_normal(0,4,6),
+					get_triangle_normal(0,6,1)
+				]
+			)).normalized,
+			get_vector3_average(PackedVector3Array(
+				[	#Vertex 1 and all shared faces
+					get_triangle_normal(0,1,2),
+					get_triangle_normal(0,6,1),
+					get_triangle_normal(1,6,7),
+					get_triangle_normal(1,7,9),
+					get_triangle_normal(1,9,2)
+				]
+			)).normalized(),
 			Vector3.ZERO,
 			Vector3.ZERO,
 			Vector3.ZERO,
@@ -62,6 +68,8 @@ func _ready():
 			Vector3.ZERO
 		]
 	)
+	print("Vertex 0", mesh_data[ArrayMesh.ARRAY_NORMAL][0])
+	print("Vertex 1", mesh_data[ArrayMesh.ARRAY_NORMAL][1])
 	mesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_data)
 
@@ -74,11 +82,11 @@ func get_vertex(i):
 func get_triangle_normal(a:int, b:int, c:int):
 	var side1 = get_vertex(b) - get_vertex(a)
 	var side2 = get_vertex(c) - get_vertex(a)
-	var normal = side1.cross(side2) #Cross product is perpendicular to the surface (normal)
-	return normal
+	var normal = side2.cross(side1) #Cross product is perpendicular to the surface (normal)
+	return normal.normalized()
 	
-func get_vector3_average(vectors: PackedVector3Array):
+func get_vector3_average(vectors: PackedVector3Array) -> Vector3:
 	var sum := Vector3.ZERO
 	for vector in vectors:
 		sum += vector
-	return Vector3(sum / vectors.size())
+	return sum / vectors.size()
