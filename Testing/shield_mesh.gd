@@ -1,9 +1,12 @@
-# Inspiration: "Create Mesh with Code: ArrayMesh Basics" [April 22, 2022]
-# Attribution: DitzyNinja's Godojo
-# Link:        https://youtu.be/w9KBxifGYiU
-# Notes:
-#	At time of writing (Godot version 4.4.1) 'tool' has been replaced with '@tool'.
-#		Furthermore, 'Pool...' arrays have been replaced with 'Packed...' arrays.
+# Resources:
+#	"Create Mesh with Code: ArrayMesh Basics" [DitzyNinja's Godojo; April 22, 2022]
+#	"GodotDocs->Math->VectorMath->CrossProduct->CalculatingNormals"
+# Links:
+#	https://youtu.be/w9KBxifGYiU
+#	https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html#calculating-normals
+# Notes for Godot Version 4.4.1:
+#	tool is @tool
+#	Pool...Array is Packed...Array
 
 @tool
 extends MeshInstance3D
@@ -37,10 +40,10 @@ func _ready():
 	)
 	# If the vertex is part of multiple faces then its normal should be the average of the faces
 	#	note: THERE MUST BE A NORMAL FOR EVERY VERTEX otherwise 'add_surface_from_arrays()' breaks.
-	#TODO: These two vectors should be symmetrical and aren't. Determine where the issue arises.
+	#TODO: Write algo to get vertex normals from averages of connected faces from ARRAY_INDEX
 	mesh_data[ArrayMesh.ARRAY_NORMAL] = PackedVector3Array(
 		[
-			get_vector3_average(PackedVector3Array(
+			get_normalized_average(PackedVector3Array(
 				[	#Vertex 0 and all shared faces
 					get_triangle_normal(0,1,2),
 					get_triangle_normal(0,2,3),
@@ -48,8 +51,8 @@ func _ready():
 					get_triangle_normal(0,4,6),
 					get_triangle_normal(0,6,1)
 				]
-			)).normalized,
-			get_vector3_average(PackedVector3Array(
+			)),
+			get_normalized_average(PackedVector3Array(
 				[	#Vertex 1 and all shared faces
 					get_triangle_normal(0,1,2),
 					get_triangle_normal(0,6,1),
@@ -57,7 +60,7 @@ func _ready():
 					get_triangle_normal(1,7,9),
 					get_triangle_normal(1,9,2)
 				]
-			)).normalized(),
+			)),
 			Vector3.ZERO,
 			Vector3.ZERO,
 			Vector3.ZERO,
@@ -68,16 +71,12 @@ func _ready():
 			Vector3.ZERO
 		]
 	)
-	print("Vertex 0", mesh_data[ArrayMesh.ARRAY_NORMAL][0])
-	print("Vertex 1", mesh_data[ArrayMesh.ARRAY_NORMAL][1])
 	mesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_data)
 
 func get_vertex(i):
 	return mesh_data[ArrayMesh.ARRAY_VERTEX][i]
 
-#Inspiration: Godot Docs -> Math -> Vector Math -> Cross Product -> Calculating Normals
-#Link: https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html#calculating-normals
 ##Takes three indices in Array_Vertex and returns the facing direction of the resulting triangle
 func get_triangle_normal(a:int, b:int, c:int):
 	var side1 = get_vertex(b) - get_vertex(a)
@@ -85,8 +84,8 @@ func get_triangle_normal(a:int, b:int, c:int):
 	var normal = side2.cross(side1) #Cross product is perpendicular to the surface (normal)
 	return normal.normalized()
 	
-func get_vector3_average(vectors: PackedVector3Array) -> Vector3:
+func get_normalized_average(vectors: PackedVector3Array) -> Vector3:
 	var sum := Vector3.ZERO
 	for vector in vectors:
 		sum += vector
-	return sum / vectors.size()
+	return (sum / vectors.size()).normalized()
