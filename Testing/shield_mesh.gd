@@ -74,6 +74,15 @@ func _ready():
 	mesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_data)
 
+#TODO: Did you just fuckin' do it?
+func get_vertex_normal(vertex:int):
+	var face_normals = PackedVector3Array()
+	for i in mesh_data[ArrayMesh.ARRAY_INDEX].Size():
+		if mesh_data[ArrayMesh.ARRAY_INDEX][i] == vertex:
+			var first_tri = i - i % 3 #first vertex in the set of 3 vertices used to draw the face
+			face_normals.append(get_triangle_normal(first_tri,first_tri+1,first_tri+2))
+	return get_normalized_average(face_normals)
+
 func get_vertex(i):
 	return mesh_data[ArrayMesh.ARRAY_VERTEX][i]
 
