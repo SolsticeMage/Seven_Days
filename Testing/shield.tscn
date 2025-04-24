@@ -11,7 +11,7 @@ _surfaces = [{
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 10,
-"vertex_data": PackedByteArray("mpkZP5qZGT8AAAAAmpkZP5qZGT+amZk+mpkZv5qZGT+amZk+mpkZv5qZGT8AAAAAmpmZvpqZGb8AAAAAAAAAAGZmZr8AAAAAmpmZPpqZGb8AAAAAmpmZPpqZGb+amZk+AAAAAGZmZr+amZk+mpmZvpqZGb+amZk+AAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIA=")
+"vertex_data": PackedByteArray("mpkZP5qZGT8AAAAAmpkZP5qZGT+amZk+mpkZv5qZGT+amZk+mpkZv5qZGT8AAAAAmpmZvpqZGb8AAAAAAAAAAGZmZr8AAAAAmpmZPpqZGb8AAAAAmpmZPpqZGb+amZk+AAAAAGZmZr+amZk+mpmZvpqZGb+amZk+adC65dEwNoy+t8qOj1Ppr69eWLzyW/uoExMeuCBa1a4eHlgrg05fsxK5pBeJSQyu3eUHOkaYkqmEsuVcE0p4o1toEznSCvPWdE6vadW0Uqg=")
 }]
 
 [node name="Node3D" type="Node3D"]
@@ -23,17 +23,89 @@ script = ExtResource("1_5d8vs")
 [node name="Vertex0" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.6, 0)
 
-[node name="Face Normals Average" type="Node3D" parent="."]
+[node name="Normal0" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.794, 0.951, -0.4)
 
-[node name="Averages Normalized" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.942, 1.22, -0.706)
+[node name="Normal0_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.697, 0.776, -0.2)
 
 [node name="Vertex1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.6, 0.3)
 
-[node name="Face Normals Average2" type="Node3D" parent="."]
+[node name="Normal1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.988, 0.703, 0.7)
 
-[node name="Face Normals Average3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.285, 0.782, 1.006)
+[node name="Normal1_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.794, 0.652, 0.5)
+
+[node name="Vertex2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.6, 0.3)
+
+[node name="Normal2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.843, 1.039, 0.55)
+
+[node name="Normal2_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.721, 0.82, 0.425)
+
+[node name="Vertex3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.6, 0)
+
+[node name="Normal3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.085, 0.729, -0.25)
+
+[node name="Normal3_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.842, 0.664, -0.125)
+
+[node name="Vertex4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.6, 0)
+
+[node name="Normal4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.697, -0.876, -0.5)
+
+[node name="Normal4_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.498, -0.738, -0.25)
+
+[node name="Vertex5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+
+[node name="Normal5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.177, -1.43, -0.25)
+
+[node name="Normal5_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.089, -1.165, -0.125)
+
+[node name="Vertex6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.6, 0)
+
+[node name="Normal6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.829, -0.838, -0.4)
+
+[node name="Normal6_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565, -0.719, -0.2)
+
+[node name="Vertex7" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.6, 0.3)
+
+[node name="Normal7" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.777, -0.931, 0.7)
+
+[node name="Normal7_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539, -0.765, 0.5)
+
+[node name="Vertex8" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0.3)
+
+[node name="Normal8" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177, -1.43, 0.55)
+
+[node name="Normal8_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.088, -1.165, 0.425)
+
+[node name="Vertex9" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.6, 0.3)
+
+[node name="Normal9" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.741, -0.799, 0.8)
+
+[node name="Normal9_" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52, -0.699, 0.55)
