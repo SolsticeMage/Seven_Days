@@ -38,21 +38,8 @@ func _ready():
 	])
 	# A vertex normal is the average of all connected faces' normals
 	#	ALL VERTICES MUST HAVE NORMALS or error 'Invalid format for surface'
+	#TODO: Simplify. We can use the size of ARRAY_VERTEX to iterate.
 	mesh_data[ArrayMesh.ARRAY_NORMAL] = PackedVector3Array([
-		#get_normalized_average(PackedVector3Array([	#Vertex 0 and its faces
-			#get_triangle_normal(0,1,2),
-			#get_triangle_normal(0,2,3),
-			#get_triangle_normal(0,3,4),
-			#get_triangle_normal(0,4,6),
-			#get_triangle_normal(0,6,1),
-		#])),
-		#get_normalized_average(PackedVector3Array([#Vertex 1 and its faces
-			#get_triangle_normal(0,1,2),
-			#get_triangle_normal(0,6,1),
-			#get_triangle_normal(1,6,7),
-			#get_triangle_normal(1,7,9),
-			#get_triangle_normal(1,9,2),
-		#])),
 		get_vertex_normal(0),
 		get_vertex_normal(1),
 		get_vertex_normal(2),
@@ -66,10 +53,7 @@ func _ready():
 	])
 	mesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_data)
-	for i in mesh_data[ArrayMesh.ARRAY_VERTEX].size():
-		print("#", i, ": ")
-		print("Vertex: ", mesh_data[ArrayMesh.ARRAY_VERTEX][i])
-		print("Normal: ", mesh_data[ArrayMesh.ARRAY_NORMAL][i], "\n")
+
 
 ## Returns the normal from the mesh data for the given vertex
 func get_vertex_normal(vertex:int):
@@ -77,23 +61,25 @@ func get_vertex_normal(vertex:int):
 	var indices = mesh_data[ArrayMesh.ARRAY_INDEX]
 	var vertices = mesh_data[ArrayMesh.ARRAY_VERTEX]
 	
-	#TODO: You fucked up again. Find out where, and fix.
-	# Iterate through indices to find the provided vertex
 	for i in indices.size():
 		if indices[i] == vertex:
 			# Find the index of the first vertex in its triangle (set of 3)
-			var first_triangle_vert = i - i % 3
-			# Append the normal of the triangle face
-			face_normals.append(
-					get_face_normal(
-					vertices[indices[first_triangle_vert]],
-					vertices[indices[first_triangle_vert+1]],
-					vertices[indices[first_triangle_vert+2]])
-					)
-			# Jump to the first vertex in the next triangle
-			if first_triangle_vert+3 < indices.size():
-				i = first_triangle_vert+3
-			else: break
+			var first_vert_index_of_tri = i - i % 3
+			
+			# Collect the triangle's face normal
+			face_normals.append(get_face_normal(
+					vertices[indices[first_vert_index_of_tri]],
+					vertices[indices[first_vert_index_of_tri+1]],
+					vertices[indices[first_vert_index_of_tri+2]]))
+			
+			# Break the loop if this was the last triangle
+			if first_vert_index_of_tri+3 >= indices.size():
+				break
+			
+			# Skip to the next set of 3 (don't count the same triangle twice)
+			i = first_vert_index_of_tri+3
+	
+	# Return the normalized average of the face_normals collection
 	return get_normalized_average(face_normals)
 
 
